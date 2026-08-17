@@ -241,4 +241,12 @@ demo = gr.TabbedInterface(
 if __name__ == "__main__":
     # Launch Gradio dashboard.
     print("[Gradio] Launching visual web dashboard...")
-    demo.launch(server_name="0.0.0.0", server_port=7860, block=True)
+    demo.launch(server_name="0.0.0.0", server_port=7860)
+    
+    # Keep main thread alive persistently
+    import time
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("[Gradio] Shutting down...")
