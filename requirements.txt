@@ -10,3 +10,4 @@ tqdm
 ipykernel
 ipywidgets
 pillow
+seaborn
