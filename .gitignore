@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.vscode/
+.idea/
+data/
+bccd_temp/
+dsb2018_temp/
+outputs/
+checkpoints/*.pth
