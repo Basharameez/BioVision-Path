@@ -14,8 +14,20 @@ from src.preprocessing import get_classification_transforms
 from src.explainability import GradCAM, overlay_gradcam_on_image
 from src.visualization import denormalize_image
 
-# Force CPU execution for universal web deployment compatibility
-device = torch.device("cpu")
+# Import spaces dynamically for Hugging Face ZeroGPU compatibility
+try:
+    import spaces
+    has_spaces = True
+except ImportError:
+    has_spaces = False
+
+def gpu_decorator(func):
+    if has_spaces:
+        return spaces.GPU(func)
+    return func
+
+# Dynamic execution device (GPU if available, fallback to CPU)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 meta = get_pathmnist_metadata()
 
 # Load models and weights
@@ -49,6 +61,7 @@ _, val_transform = get_classification_transforms(224)
 # Inference functions
 # =====================================================================
 
+@gpu_decorator
 def predict_classification(input_img):
     """
     Classifies a colorectal histopathology patch and generates Grad-CAM.
@@ -87,6 +100,7 @@ def predict_classification(input_img):
     return label_dict, blended_img
 
 
+@gpu_decorator
 def predict_segmentation(input_img):
     """
     Segments nuclei from H&E breast cancer slide images.
@@ -125,6 +139,7 @@ def predict_segmentation(input_img):
     return mask_pil, final_overlay
 
 
+@gpu_decorator
 def predict_detection(input_img, score_threshold=0.5):
     """
     Detects blood smear cells (WBC, RBC, Platelets).
