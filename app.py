@@ -241,7 +241,7 @@ demo = gr.TabbedInterface(
 if __name__ == "__main__":
     # Launch Gradio dashboard.
     print("[Gradio] Launching visual web dashboard...")
-    demo.launch(server_name="0.0.0.0", server_port=7860, ssr=False)
+    demo.launch(server_name="0.0.0.0", server_port=7860)
     
     # Keep main thread alive persistently
     import time
