@@ -1,3 +1,15 @@
+# Import spaces dynamically for Hugging Face ZeroGPU compatibility
+try:
+    import spaces
+    has_spaces = True
+except ImportError:
+    has_spaces = False
+
+def gpu_decorator(func):
+    if has_spaces:
+        return spaces.GPU(func)
+    return func
+
 import os
 import torch
 import numpy as np
@@ -13,18 +25,6 @@ from src.data import get_pathmnist_metadata
 from src.preprocessing import get_classification_transforms
 from src.explainability import GradCAM, overlay_gradcam_on_image
 from src.visualization import denormalize_image
-
-# Import spaces dynamically for Hugging Face ZeroGPU compatibility
-try:
-    import spaces
-    has_spaces = True
-except ImportError:
-    has_spaces = False
-
-def gpu_decorator(func):
-    if has_spaces:
-        return spaces.GPU(func)
-    return func
 
 # Dynamic execution device (GPU if available, fallback to CPU)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
