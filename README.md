@@ -1,3 +1,14 @@
+---
+title: BioVision-Path
+emoji: 🔬
+colorFrom: blue
+colorTo: green
+sdk: gradio
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # BioVision-Path: Explainable Multi-Task Biomedical Image Analysis
 
 [![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/)
