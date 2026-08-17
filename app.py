@@ -239,7 +239,6 @@ demo = gr.TabbedInterface(
 )
 
 if __name__ == "__main__":
-    # Launch Gradio dashboard. If running locally, you can specify share=True
-    # to generate a public link that can be shared with recruiters.
+    # Launch Gradio dashboard.
     print("[Gradio] Launching visual web dashboard...")
-    demo.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    demo.launch(server_name="0.0.0.0", server_port=7860, block=True)
