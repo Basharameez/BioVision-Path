@@ -220,7 +220,8 @@ tab1 = gr.Interface(
         gr.Image(type="pil", label="Grad-CAM Interpretability Overlay")
     ],
     title="1. Histopathology Classification & Grad-CAM",
-    description="Upload a H&E tissue patch from the PathMNIST dataset. The system predicts the tissue type and visualizes the attributions using Grad-CAM."
+    description="Upload a H&E tissue patch from the PathMNIST dataset. The system predicts the tissue type and visualizes the attributions using Grad-CAM.",
+    examples=[["examples/pathmnist_sample.png"]]
 )
 
 # Tab 2: Segmentation
@@ -232,7 +233,8 @@ tab2 = gr.Interface(
         gr.Image(type="pil", label="Segmentation Contour Overlay")
     ],
     title="2. Biomedical Nuclei Segmentation (U-Net)",
-    description="Upload a breast cancer tissue slide patch. The U-Net will segment the boundaries of individual tumor nuclei."
+    description="Upload a breast cancer tissue slide patch. The U-Net will segment the boundaries of individual tumor nuclei.",
+    examples=[["examples/tnbc_sample.png"]]
 )
 
 # Tab 3: Detection
@@ -244,7 +246,8 @@ tab3 = gr.Interface(
     ],
     outputs=gr.Image(type="pil", label="Detected Cells Overlay"),
     title="3. Blood Smear Cell Detection (Faster R-CNN)",
-    description="Upload a microscopy slide smear. Red circles indicate WBCs, blue circles indicate RBCs, and green circles indicate Platelets."
+    description="Upload a microscopy slide smear. Red circles indicate WBCs, blue circles indicate RBCs, and green circles indicate Platelets.",
+    examples=[["examples/bccd_sample.png", 0.5]]
 )
 
 # Combine into Tabbed Interface
